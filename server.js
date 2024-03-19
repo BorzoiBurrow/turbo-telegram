@@ -13,6 +13,9 @@ app.get("/", (req,res) => {
     res.sendFile(serve + "/index.html")
 });
 
+app.get("/index.jsx", (req,res) => {
+    res.sendFile(serve + "/index.jsx")
+})
 // initalize the app.
 app.listen(port, () => {
 console.log(`View the app at http://localhost:${port}`)
