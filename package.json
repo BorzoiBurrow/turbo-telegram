@@ -4,7 +4,8 @@
   "description": "Showcase site",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "build": "npx webpack"
   },
   "author": "",
   "license": "ISC",
