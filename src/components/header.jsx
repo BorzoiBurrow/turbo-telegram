@@ -3,9 +3,17 @@ import React from "react";
 
 const Header = () => {
     return (
-        <div>
-            <h2>Test</h2>
-        </div>
+        <menu>
+                    <li>
+                        Home
+                    </li>
+                    <li>
+                        bored?
+                    </li>
+                    <li>
+                        blog
+                    </li>
+        </menu>
     )
 }
 
