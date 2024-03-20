@@ -5,16 +5,16 @@ const app = express();
 
 // set working path and app port.
 let port = process.env.port || 3001;
-const serve = path.join(__dirname, "/src")
+const serve = path.join(__dirname, "/dist")
 process.chdir(serve)
 
 // home page routing.
 app.get("/", (req,res) => {
-    res.sendFile(serve + "/index.html")
+    res.sendFile(serve + "/assets/index.html")
 });
 
-app.get("/index.jsx", (req,res) => {
-    res.sendFile(serve + "/index.jsx")
+app.get("/bundle.js", (req,res) => {
+    res.sendFile(serve + "/bundle.js")
 })
 // initalize the app.
 app.listen(port, () => {
