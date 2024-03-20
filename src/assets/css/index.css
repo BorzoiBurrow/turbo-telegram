@@ -1,6 +1,35 @@
-/* just testing for now */
-#headerRoot{
-    border-radius: 2%;
-    border-color: red;
-    border-style: solid;
+/* hexcodes for testing, maybe the pallette to use. */
+/* #000000
+#051427
+#530f1e
+#a44322
+#f8bc04 */
+body {
+    margin: 0px;
+    background-image: linear-gradient(#051427, #530f1e);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+html {
+    height: 100%;
+}
+
+.navbar {
+    background-color: #051427;
+    list-style-type: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 0px;
+}
+
+.navbar-card {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ddd;
+    transition: transform 0.2s;
+}
+
+.navbar-card:hover {
+    transform: scale(1.2);
 }
