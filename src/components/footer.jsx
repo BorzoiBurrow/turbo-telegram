@@ -3,8 +3,9 @@ const Footer = () => {
 
 
     return (
-        <div className="FooterContainer">
-        </div>
+            <div className="Footer">
+                <i className="fab fa-github"></i>
+            </div>
     )
 }
 

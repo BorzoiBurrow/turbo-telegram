@@ -1,4 +1,3 @@
-
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
@@ -16,21 +15,19 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader'
-                }
-            },
+                }},
             {
                 test: /\.css$/i,
                 use: ["style-loader", "css-loader"],
-
-            }
+            },
         ]
     },
     plugins: [
-    new CopyPlugin({
-        patterns: [
-            {from: 'src/index.html', to: 'assets'}
-        ]
-    })
+        new CopyPlugin({
+            patterns: [
+                {from: 'src/index.html', to: 'assets'}
+            ]
+        })
     ],
     resolve: {
         extensions: ['.js', '.jsx'] 
