@@ -6,15 +6,15 @@
 #f8bc04 */
 
 * {
-    font-family: "Playfair display", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
     margin: 0;
     padding: 0;
 }
 
 body {
+    /* font-family: "Playfair display", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal; */
     margin: 0;
     min-height: 100vh;
     display: flex;
@@ -35,9 +35,11 @@ body {
     flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .navbar-card {
+    display: flex;
     font-size: 24px;
     padding: 8px;
     background-color: #a44322;
@@ -49,6 +51,7 @@ body {
     width: 33%;
     color: whitesmoke;
     justify-content: center;
+    align-items: center;
 }
 
 .navbar-card:hover {
@@ -56,24 +59,50 @@ body {
 }
 
 .Footer {
+    display: flex;
     height: 100px;
     background: inherit;
-    margin-top: auto;
-    color: #fff;
-    padding: 20px;
-    text-align: center; 
+    padding: 35px;
+    justify-content: center;
+    align-items: center;
+}
+
+.Footer a {
+display: inline-block;
+}
+.Footer p {
+    font-size: 24px;
+    color: whitesmoke;
+}
+.Icons {
+    align-items: center;
+}
+
+.fab {
+    transition: transform 0.2s;
+    padding: 15px;
+    font-size: 36px;
+    color: wheat;
+}
+
+.fab:hover {
+    transform: scale(1.2);
+}
+
+@media (max-width: 800px){
+    .navbar-card{
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 750px){
     .navbar-card{
-        width: 40%;
-        font-size: 16px;
+        font-size: 14px;
     }
 }
 
 @media (max-width: 435px){
     .navbar-card{
-        width: 40%;
         font-size: 12px;
     }
 }
