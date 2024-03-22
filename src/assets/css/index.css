@@ -28,16 +28,27 @@ html {
     list-style-type: none;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     padding: 0px;
+}
+
+.navbar-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .navbar-card {
     font-size: 24px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #ddd;
+    padding: 8px;
+    background-color: #a44322;
     transition: transform 0.2s;
+    background-blend-mode: lighten;
+    border-radius: 10px;
+    border-color: #a44322;
+    box-shadow: #530f1e;
+    width: 33%;
+    color:whitesmoke;
 }
 
 .navbar-card:hover {

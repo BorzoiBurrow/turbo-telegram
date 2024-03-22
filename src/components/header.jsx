@@ -25,7 +25,7 @@ const Header = () => {
                 <button onClick={() => handleClick("bored?")} className="navbar-card">
                 <div>bored?</div>
                 </button>
-            </li>           
+            </li>
              <li className="navbar-item">
                 <button onClick={() => handleClick("blog")} className="navbar-card">
                 <div>blog</div>
