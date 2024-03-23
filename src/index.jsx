@@ -1,7 +1,6 @@
 import React from "react";
 import { createRoot } from 'react-dom/client';
-import Header from "./components/header";
-import Footer from "./components/footer";
+import { Header, Footer} from "./components";
 import "../src/assets/css/index.css";
 
 // await DOM load before executing react elements.
