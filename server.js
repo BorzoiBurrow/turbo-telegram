@@ -10,16 +10,16 @@ process.chdir(serve)
 
 // page routing.
 app.get("/", (req,res) => {
-    res.sendFile(serve + "/assets/pages/index.html")
+    res.sendFile(serve + "/assets/index.html")
 });
 
 
 app.get("/blog", (req,res) => {
-    res.sendFile(serve + "/assets/pages/blog.html")
+    res.sendFile(serve + "/assets/blog.html")
 })
 
 app.get("/bored", (req,res) =>{
-    res.sendFile(serve + "/assets/pages/bored.html")
+    res.sendFile(serve + "/assets/bored.html")
 })
 
 // retrieve webpack bundle

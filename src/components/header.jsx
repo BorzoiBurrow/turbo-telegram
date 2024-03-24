@@ -5,9 +5,9 @@ const Header = () => {
     // handles button presses for navbar, logic still needs to made
     const handleClick = (buttonName) => {
         const actions = {
-            "Home": () => console.log("Heading home..."),
-            "bored?": () => console.log("Me too..."),
-            "blog": () => console.log("Feeling chatty."),
+            "Home": () => window.location.href ="/",
+            "bored?": () => window.location.href = "/bored",
+            "blog": () => window.location.href = "/blog",
             "default": () => {
                 console.log("button name was invalid, verify that the button is passing the correct name, or that the object case supports the button.");
                 console.log(`The button name that was pressed is ${buttonName}`);
