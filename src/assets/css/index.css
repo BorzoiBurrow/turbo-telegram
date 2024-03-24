@@ -68,7 +68,10 @@ body {
 }
 .About a {
     text-decoration: underline;
-    color: aqua;
+    color: rgb(10, 202, 202);
+}
+.About a:hover {
+    color: lime;
 }
 
 .Footer {

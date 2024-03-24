@@ -10,7 +10,7 @@ process.chdir(serve)
 
 // home page routing.
 app.get("/", (req,res) => {
-    res.sendFile(serve + "/assets/index.html")
+    res.sendFile(serve + "/assets/pages/index.html")
 });
 
 app.get("/bundle.js", (req,res) => {
