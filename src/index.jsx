@@ -7,5 +7,12 @@ import "../src/assets/css/index.css";
 window.addEventListener("DOMContentLoaded", function () {
     const headerRoot = createRoot(document.getElementById('headerRoot')).render(<Header />);
     const footerRoot = createRoot(document.getElementById('footerRoot')).render(<Footer />);
-    const aboutRoot = createRoot(document.getElementById('aboutRoot')).render(<About />);
+
+    if (window.location.href === "/blog") {
+
+    } else if (this.window.location.href === "/bored") {
+
+    } else {
+        const aboutRoot = createRoot(document.getElementById('aboutRoot')).render(<About />);
+    }
 });
