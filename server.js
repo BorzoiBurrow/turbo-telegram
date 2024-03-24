@@ -22,6 +22,10 @@ app.get("/bored", (req,res) =>{
     res.sendFile(serve + "/assets/bored.html")
 })
 
+app.get("/login", (req,res) => {
+    res.sendFile(serve + "/assets/login.html")
+})
+
 // retrieve webpack bundle
 app.get("/bundle.js", (req,res) => {
     res.sendFile(serve + "/bundle.js")
