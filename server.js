@@ -26,8 +26,8 @@ app.get("/login", (req,res) => {
     res.sendFile(serve + "/assets/login.html")
 })
 
-app.get("/signup", (req,res) => {
-    res.sendFile(serve + "/assets/signup.html")
+app.get("/Create", (req,res) => {
+    res.sendFile(serve + "/assets/CreateAccount.html")
 })
 
 // retrieve webpack bundle

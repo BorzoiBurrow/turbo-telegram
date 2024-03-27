@@ -18,10 +18,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
           const loginRoot = createRoot(document.getElementById('loginRoot')).render(<Login />)
 
-    } else if (this.window.location.pathname === "/signup"){
+    } else if (this.window.location.pathname === "/Create"){
 
           const ForumRoot = createRoot(document.getElementById('ForumRoot')).render(<Signup />);
-          
+
     } else {
 
           const aboutRoot = createRoot(document.getElementById('aboutRoot')).render(<About />);
