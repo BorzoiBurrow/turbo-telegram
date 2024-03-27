@@ -5,6 +5,11 @@
 #a44322
 #f8bc04 */
 
+@import "./signup.css";
+@import "./blog.css";
+@import "./bored.css";
+@import "./login.css";
+
 * {
     margin: 0;
     padding: 0;
@@ -47,7 +52,6 @@ body {
     background-blend-mode: lighten;
     border-radius: 10px;
     border-color: #a44322;
-    box-shadow: #530f1e;
     width: 33%;
     color: whitesmoke;
     justify-content: center;

@@ -24,15 +24,15 @@ const Signup = () => {
       };
 
     return (
-    <form>
-        <label htmlFor="UserName">Please enter a UserName. Your username Should be atleast 8 characters, and no more than 48 characters.</label>
-        <input id="UserName" type="text" autoComplete="username" onChange={(e) => setUserName(e.target.value)}/>
+    <form id="CreationForm">
+        <label className="InputLabel" htmlFor="UserName">Please enter a UserName. Your username Should be atleast 8 characters, and no more than 48 characters.</label>
+        <input className="InputField" id="UserName" type="text" autoComplete="username" onChange={(e) => setUserName(e.target.value)}/>
     
-        <label htmlFor="Email">Please enter your email.</label>
-        <input id="Email" type="text" autoComplete="Email" onChange={(e) => setEmail(e.target.value)}/>
+        <label className="InputLabel" htmlFor="Email">Please enter your email.</label>
+        <input className="InputField" id="Email" type="text" autoComplete="Email" onChange={(e) => setEmail(e.target.value)}/>
     
-        <label htmlFor="Password">Please create a password. Your password should be atleast 8 characters, contain one special character and a number.</label>
-        <input id="Password" type="text" autoComplete="Password" onChange={(e) => setPassword(e.target.value)}/>
+        <label className="InputLabel" htmlFor="Password">Please create a password. Your password should be atleast 8 characters, contain one special character and a number.</label>
+        <input className="InputField" id="Password" type="text" autoComplete="Password" onChange={(e) => setPassword(e.target.value)}/>
 
         <button id="submit" onClick={handleSubmit} >Submit</button>
     </form>
