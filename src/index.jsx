@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from 'react-dom/client';
-import { Header, Footer, About, Creation, Login} from "./components";
+import { Header, Footer, About, Signup, Login} from "./components";
 import "../src/assets/css/index.css";
 
 // await DOM load before executing react elements.
@@ -18,9 +18,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
           const loginRoot = createRoot(document.getElementById('loginRoot')).render(<Login />)
 
-    } else if (this.window.location.pathname === "/signin"){
+    } else if (this.window.location.pathname === "/signup"){
 
-          const ForumRoot = createRoot(document.getElementById('ForumRoot')).render(<Creation />);
+          const ForumRoot = createRoot(document.getElementById('ForumRoot')).render(<Signup />);
+          
     } else {
 
           const aboutRoot = createRoot(document.getElementById('aboutRoot')).render(<About />);
