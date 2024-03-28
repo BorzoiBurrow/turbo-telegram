@@ -2,6 +2,7 @@
 const express = require("express");
 const path = require('path')
 const app = express();
+const verify = require("./src/assets/scripts/verify")
 
 // set working path and app port.
 let port = process.env.port || 3001;
