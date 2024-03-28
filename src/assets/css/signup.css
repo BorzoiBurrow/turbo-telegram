@@ -1,23 +1,40 @@
-.InputField {
-    width: 50%;
-
-}
-
 .InputLabel {
-    font-size:  24px;
+    margin-bottom: 10px;
+    font-size: 24px;
     color: whitesmoke;
-}
+  }
+  
+  .InputField {
+    border: 1px solid red; 
+    border-radius: 5px; 
+    padding: 8px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    background-color: inherit;
+    transition: transform 0.2s;
+    caret-color: whitesmoke;
+    color: whitesmoke;
+  }
+  
+  .InputField:focus {
+    border: 1px solid blue;
+    transform: scale(1.2);
+    outline: none;
+  }
 
 #CreationForm {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
+    margin-top: 150px;
 }
 
 #submit {
     display: flex;
     font-size: 24px;
     padding: 8px;
+    margin-top: 3%;
     background-color: #a44322;
     transition: transform 0.2s;
     border-radius: 10px;
