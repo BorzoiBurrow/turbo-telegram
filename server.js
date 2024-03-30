@@ -43,14 +43,15 @@ app.post("/Create", async (req,res) => {
     const PasswordRegex = /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*\d).{8,128}$/
     
     try {
-
          if  (UserNameRegex.test(userName) === false){
             res.status(400).send("Invalid username, UserName must be atleast 8 characters and no more than 48 characters.")
             return;
         } else if (PasswordRegex.test(password) === false){
             res.status(400).send("Invalid password. It must contain atleast one special character, a number, and a minimum of 8 characters with a max of 128 characters.")
             return;
-            // if true, a value was found and the email is in use.
+        } else if (await VerifyAccount(userName) === true){
+            res.status(400).send("Invalid Username, The userName was already in use.")
+            return;
         } 
         else {
             CreateAccount(password, userName)
@@ -70,8 +71,27 @@ app.listen(port, () => {
 console.log(`View the app at http://localhost:${port}`)
 console.log(`listening live on ${port}!`)
 });
-
-
+// checks if the username exists, returning true if it doesn't, and false if it does.
+async function VerifyAccount(userName){
+    try {
+        const connection = await mysql.createConnection({
+            host: process.env.host,
+            user: process.env.user,
+            database: process.env.database,
+            password: process.env.password
+          });
+        const [results] = await connection.query(
+            `SELECT * FROM ACCOUNTS WHERE UserName = ?`, [userName]
+        );
+        if (results.length === 0) {
+            return false;
+        } else {
+            return true;
+        }
+    } catch(error) {
+        console.log(error);
+    }
+}
 
 async function CreateAccount(password, userName){
     try {
