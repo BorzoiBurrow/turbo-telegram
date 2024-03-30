@@ -3,8 +3,11 @@ const express = require("express");
 const path = require('path')
 const app = express();
 const mysql = require('mysql2/promise');
-require('dotenv').config()
+const bcrypt = require('bcrypt');
+const saltRounds = 25;
 
+require('dotenv').config()
+app.use(express.json());
 
 
 // set working path and app port.
@@ -34,9 +37,28 @@ app.get("/Create", (req,res) => {
     res.sendFile(serve + "/assets/CreateAccount.html")
 })
 
-app.post("/Create", (req,res) => {
+app.post("/Create", async (req,res) => {
+    const {password, userName } = req.body;
+    const UserNameRegex = /^.{4,32}$/
+    const PasswordRegex = /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*\d).{8,128}$/
+    
+    try {
 
-})
+         if  (UserNameRegex.test(userName) === false){
+            res.status(400).send("Invalid username, UserName must be atleast 8 characters and no more than 48 characters.")
+            return;
+        } else if (PasswordRegex.test(password) === false){
+            res.status(400).send("Invalid password. It must contain atleast one special character, a number, and a minimum of 8 characters with a max of 128 characters.")
+            return;
+            // if true, a value was found and the email is in use.
+        } 
+        else {
+            CreateAccount(password, userName)
+
+        }
+    } catch (error) {
+         console.error(error)
+    }})
 
 // retrieve webpack bundle
 app.get("/bundle.js", (req,res) => {
@@ -50,36 +72,20 @@ console.log(`listening live on ${port}!`)
 });
 
 
-async function VerifyAccount(Email){
-    // check if the email and name is already in the database. Will need to recieve email from the user to check. 
-    try {
 
+async function CreateAccount(password, userName){
+    try {
         const connection = await mysql.createConnection({
             host: process.env.host,
             user: process.env.user,
             database: process.env.database,
             password: process.env.password
-          });
-// placeholder for now. Should be the email of the user.
-        
-        const [results] = await connection.query(
-            `SELECT * FROM ACCOUNTS WHERE Email = ?`, [Email]
+        });
+           await connection.query(
+            `INSERT INTO Accounts (UserName, Pass) VALUES (?, ?)`,
+            [userName,password]
         );
-        if (results.length === 0) {
-            console.log("Email not found, continue....");
-        } else {
-            console.log("Email was previously Used.")
-        }
-    } catch(error) {
-        console.log(error);
-    }
-}
-
-async function CreateAccount(){
-    // take in the data from the user then create the account in the database. 
-
-    // Provide a session for ten minutes.
-
-    // reroute them to the main page.
-}
+} catch(error){
+        console.error(error)
+}};
 
