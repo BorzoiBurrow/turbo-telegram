@@ -12,6 +12,4 @@ Pass VARCHAR(128) NOT NULL,
 administrator BOOLEAN DEFAULT 0
 );
 
-INSERT INTO Accounts (UserName, Pass)
-VALUES ("TestUser", "ABC123");
 

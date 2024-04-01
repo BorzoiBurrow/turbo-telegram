@@ -24,6 +24,13 @@ const Signup = () => {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({userName, password})
+                }).then(response => {
+                    if (response.ok) {
+                        window.location.href = "/"
+                    }
+                    else {
+                        console.error(`There was an error creating the account. Please try again later. ${response}`)
+                    }
                 })
             } catch(err) {
                 console.error(err);

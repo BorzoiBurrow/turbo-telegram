@@ -1,14 +1,13 @@
-// import express, path module, and define app as express.
 const express = require("express");
 const path = require('path')
 const app = express();
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcrypt');
-const saltRounds = 25;
+const saltRounds = 15;
+const session = require('express-session')
 
 require('dotenv').config()
 app.use(express.json());
-
 
 // set working path and app port.
 let port = process.env.port || 3001;
@@ -54,9 +53,9 @@ app.post("/Create", async (req,res) => {
             return;
         } 
         else {
-            CreateAccount(password, userName)
-
-        }
+            res.status(200).send("Account created.")
+            await CreateAccount(password, userName)
+            }
     } catch (error) {
          console.error(error)
     }})
@@ -101,11 +100,21 @@ async function CreateAccount(password, userName){
             database: process.env.database,
             password: process.env.password
         });
+            const hashedPW = await hashData(password)
            await connection.query(
             `INSERT INTO Accounts (UserName, Pass) VALUES (?, ?)`,
-            [userName,password]
+            [userName,hashedPW]
         );
 } catch(error){
         console.error(error)
 }};
 
+async function hashData(item) {
+    try {
+        const hash = await bcrypt.hash(item, saltRounds);
+        return hash;
+    } catch (error) {
+        console.error('Error hashing', error);
+        throw error;
+    }
+}
