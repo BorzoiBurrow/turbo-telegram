@@ -28,8 +28,12 @@ const Signup = () => {
                     if (response.ok) {
                         window.location.href = "/"
                     }
+                    else if (response.status === 409){
+                        alert("This Username is already in use, please choose a different one.")
+                    }
                     else {
                         console.error(`There was an error creating the account. Please try again later. ${response}`)
+                        alert("There was an error creating the account. Please try again later.")
                     }
                 })
             } catch(err) {

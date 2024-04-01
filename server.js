@@ -49,7 +49,7 @@ app.post("/Create", async (req,res) => {
             res.status(400).send("Invalid password. It must contain atleast one special character, a number, and a minimum of 8 characters with a max of 128 characters.")
             return;
         } else if (await VerifyAccount(userName) === true){
-            res.status(400).send("Invalid Username, The userName was already in use.")
+            res.status(409).send("Invalid Username, The userName was already in use.")
             return;
         } 
         else {
