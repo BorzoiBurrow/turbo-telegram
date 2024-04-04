@@ -26,7 +26,7 @@ const Signup = () => {
                     body: JSON.stringify({userName, password})
                 }).then(response => {
                     if (response.ok) {
-                        window.location.href = "/"
+                        alert("Account created successfully!")
                     }
                     else if (response.status === 409){
                         alert("This Username is already in use, please choose a different one.")

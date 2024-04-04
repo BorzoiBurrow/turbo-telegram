@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const path = require('path')
 const app = express();
@@ -6,7 +7,17 @@ const bcrypt = require('bcrypt');
 const saltRounds = 15;
 const session = require('express-session')
 
-require('dotenv').config()
+app.set('trust proxy', 1) 
+app.use(session({
+  secret: process.env.secret,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000,
+    secure: false
+}
+}))
+
 app.use(express.json());
 
 // set working path and app port.
@@ -36,6 +47,17 @@ app.get("/Create", (req,res) => {
     res.sendFile(serve + "/assets/CreateAccount.html")
 })
 
+// testing route for cookies.
+app.get("/profile", (req, res) => {
+    if(!req.session.userName){
+        res.send("No username was found.")
+    }
+    else{
+        const userName = req.session.userName;
+        res.send(`Username in cookie was ${userName}`)
+    }
+});
+
 app.post("/Create", async (req,res) => {
     const {password, userName } = req.body;
     const UserNameRegex = /^.{4,32}$/
@@ -53,8 +75,9 @@ app.post("/Create", async (req,res) => {
             return;
         } 
         else {
-            res.status(200).send("Account created.")
+            req.session.userName = userName;
             await CreateAccount(password, userName)
+            res.status(200).send("Account created.")
             }
     } catch (error) {
          console.error(error)
