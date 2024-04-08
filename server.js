@@ -63,7 +63,6 @@ app.post("/login", async (req, res) => {
 
     try {
         const userExists = await VerifyAccount(userName);
-        console.log(`user Exists ${userExists}`)
         if (!userExists) {
             res.status(404).send("User not found! Check your credientials.");
             return;
@@ -155,9 +154,8 @@ async function VerifyPassword(userName, password){
         const [results] = await connection.query(
             `SELECT * FROM ACCOUNTS WHERE UserName = ?`, [userName]
         );
-        console.log(results)
+
         hashedPW = results[0].Pass
-        
        const validty = await bcrypt.compare(password, hashedPW)
         await connection.end();
         if(validty){
