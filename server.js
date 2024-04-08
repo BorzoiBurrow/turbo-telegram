@@ -63,7 +63,7 @@ app.post("/login", async (req, res) => {
 
     try {
         const userExists = await VerifyAccount(userName);
-
+        console.log(`user Exists ${userExists}`)
         if (!userExists) {
             res.status(404).send("User not found! Check your credientials.");
             return;
@@ -135,6 +135,7 @@ async function VerifyAccount(userName){
         if (results.length === 0) {
             return false;
         } else {
+            await connection.end();
             return true;
         }
     } catch(error) {
@@ -143,7 +144,7 @@ async function VerifyAccount(userName){
 }
 
 // check the password with the hashed version for equivalancy. 
-async function VerifyPassword(password, userName){
+async function VerifyPassword(userName, password){
     try {
         const connection = await mysql.createConnection({
             host: process.env.host,
@@ -151,11 +152,20 @@ async function VerifyPassword(password, userName){
             database: process.env.database,
             password: process.env.password
           });
-          
         const [results] = await connection.query(
             `SELECT * FROM ACCOUNTS WHERE UserName = ?`, [userName]
         );
         console.log(results)
+        hashedPW = results[0].Pass
+        
+       const validty = await bcrypt.compare(password, hashedPW)
+        await connection.end();
+        if(validty){
+            return true;
+        }
+        else {
+            return false;
+        }
     } catch(error) {
         console.log(error);
     }

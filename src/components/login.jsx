@@ -5,7 +5,6 @@ const Login =  () => {
     const [password, setPassword] = useState("");
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(userName, password)
         fetch('/login', {
 
             method: "POST",
