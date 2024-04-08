@@ -58,6 +58,32 @@ app.get("/profile", (req, res) => {
     }
 });
 
+app.post("/login", async (req, res) => {
+    const { userName, password } = req.body;
+
+    try {
+        const userExists = await VerifyAccount(userName);
+
+        if (!userExists) {
+            res.status(404).send("User not found! Check your credientials.");
+            return;
+        }
+
+        const passwordMatch = await VerifyPassword(userName, password);
+
+        if (!passwordMatch) {
+            res.status(401).send("Invalid password. Verify the password is correct.");
+            return;
+        }
+        req.session.userName = userName;
+        res.status(200).send("Login success!");
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal server error");
+    }
+});
+
 app.post("/Create", async (req,res) => {
     const {password, userName } = req.body;
     const UserNameRegex = /^.{4,32}$/
@@ -93,6 +119,7 @@ app.listen(port, () => {
 console.log(`View the app at http://localhost:${port}`)
 console.log(`listening live on ${port}!`)
 });
+
 // checks if the username exists, returning true if it doesn't, and false if it does.
 async function VerifyAccount(userName){
     try {
@@ -110,6 +137,25 @@ async function VerifyAccount(userName){
         } else {
             return true;
         }
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+// check the password with the hashed version for equivalancy. 
+async function VerifyPassword(password, userName){
+    try {
+        const connection = await mysql.createConnection({
+            host: process.env.host,
+            user: process.env.user,
+            database: process.env.database,
+            password: process.env.password
+          });
+          
+        const [results] = await connection.query(
+            `SELECT * FROM ACCOUNTS WHERE UserName = ?`, [userName]
+        );
+        console.log(results)
     } catch(error) {
         console.log(error);
     }

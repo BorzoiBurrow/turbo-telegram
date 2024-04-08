@@ -8,7 +8,7 @@ const Login =  () => {
         console.log(userName, password)
         fetch('/login', {
 
-            method: "GET",
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -17,6 +17,9 @@ const Login =  () => {
     }
     return (
         <form id="CreationForm">
+        <p className="creation"> 
+        <a href="/create">New to the site? Click here to create an account</a> 
+        </p>
         <label className="InputLabel" htmlFor="UserName">Please your Username.</label>
         <input className="InputField" id="UserName" type="text" autoComplete="username" onChange={(e) => setUserName(e.target.value)}/>
     
