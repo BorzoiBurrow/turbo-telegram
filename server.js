@@ -6,17 +6,21 @@ const mysql = require('mysql2/promise');
 const bcrypt = require('bcrypt');
 const saltRounds = 15;
 const session = require('express-session')
+const MemoryStore = require('memorystore')(session)
 
-app.set('trust proxy', 1) 
+app.set('trust proxy', 1)
+
 app.use(session({
-  secret: process.env.secret,
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 24 * 60 * 60 * 1000,
-    secure: false
-}
-}))
+        secret: process.env.secret,
+        resave: false,
+        saveUninitialized: true,
+        store: new MemoryStore({
+            checkPeriod: 86400000 
+          }),
+        cookie: {
+          maxAge: 24 * 60 * 60 * 1000,
+          secure: process.env.mode !== "development"
+      }}))
 
 app.use(express.json());
 
